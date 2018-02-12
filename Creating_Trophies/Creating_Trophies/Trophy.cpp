@@ -1,18 +1,48 @@
 #include "Trophy.h"
-#include <string>
 #include <iostream>
 
 using namespace std;
 
+void SetColor(Color color);
+
 Trophy::Trophy()
 {
-	m_name = "Default";
-	m_level = 1;
-	m_color = BRONZE;
+
+}
+Trophy::Trophy(string& name, int level, Color& color)
+{
+
 }
 
-Trophy::Trophy(string name, int level, Color color)
-{
-	//here is a comment
 
+string Trophy::GetName()
+{	
+	return string();
+}
+
+int Trophy::GetLevel()
+{
+	return 0;
+}
+
+Color Trophy::GetColor()
+{
+	return Color();
+}
+
+void Trophy::SetName(string name)
+{
+
+}
+
+void Trophy::SetLevel(int level)
+{
+}
+
+void Trophy::SetColor(Color color)
+{
+}
+
+void Trophy::Print()
+{
 }

@@ -2,26 +2,28 @@
 #define TROPHY_H
 
 #include <iostream>
-#include <string>
+
 
 enum Color { GOLD, SILVER, BRONZE };
+
 class Trophy
 {
-	public:		
-		Trophy();
-		Trophy(string name, int level, Color color);
-		string GetName();
-		int GetLevel();
-		Color GetColor();
-		void SetName(string name);
-		void SetLevel(int level);
-		void SetColor(Color color);
-		void Print();
+public:
+	Trophy();
+	/*Trophy(string& name, int level, Color& color);*/
+	/*string GetName();*/
+	int GetLevel();
+	/*Color GetColor();*/
+	/*void SetName(string name);*/
+	void SetLevel(int level);
 
-	private:
-		string m_name;
-		int m_level;
-		Color m_color;
+	void Print();
+
+private:
+
+	/*string m_name;*/
+	int m_level;
+	/*Color m_color;*/
 };
 
 #endif
