@@ -3,15 +3,16 @@
 
 using namespace std;
 
-void SetColor(Color color);
 
 Trophy::Trophy()
 {
 
 }
-Trophy::Trophy(string& name, int level, Color& color)
+Trophy::Trophy(string name, int level, Color color)
 {
-
+	m_level = level;
+	m_name = name;
+	m_color = color;
 }
 
 
@@ -30,7 +31,7 @@ Color Trophy::GetColor()
 	return Color();
 }
 
-void Trophy::SetName(string name)
+void Trophy::SetName(string& name)
 {
 
 }
@@ -39,10 +40,13 @@ void Trophy::SetLevel(int level)
 {
 }
 
-void Trophy::SetColor(Color color)
+void Trophy::SetColor(Color& color)
 {
 }
 
 void Trophy::Print()
 {
+	cout << "Trophy name: " << m_name << endl;
+	cout << "Trophy level: " << m_level << endl;
+	cout << "Trophy color:" << Color(m_color) << endl << endl;
 }

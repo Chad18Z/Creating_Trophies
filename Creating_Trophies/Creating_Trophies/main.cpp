@@ -18,8 +18,8 @@ void ChangeColorTrophy();
 void PrintTrophies();
 void PrintMenu();
  
-//Trophy Trophies[10];
-//int numberOfTrophies;
+Trophy Trophies[10]; // array to hold trophies
+int numberOfTrophies; // number of trophies created by the user
 
 // Entry point for the application
 int main()
@@ -82,13 +82,13 @@ void PrintMenu()
 	cout << "********************************************************************************" << endl
 		<< "* Please select an option:" << endl
 		<< "* 1 - Add a new Trophy" << endl
-		<< "* 2 - Copy a Trophey" << endl
+		<< "* 2 - Copy a Trophy" << endl
 		<< "* 3 - Delete a Trophy" << endl
-		<< "* 3 - Rename a Trophy" << endl
-		<< "* 3 - Change the level of a Trophy" << endl
-		<< "* 3 - Change the color of a Trophy" << endl
-		<< "* 3 - Print all the Trophies" << endl
-		<< "* 4 - Exit the program" << endl
+		<< "* 4 - Rename a Trophy" << endl
+		<< "* 5 - Change the level of a Trophy" << endl
+		<< "* 6 - Change the color of a Trophy" << endl
+		<< "* 7 - Print all the Trophies" << endl
+		<< "* 8 - Exit the program" << endl
 		<< "********************************************************************************" << endl;
 }
 // This function displays the goodbye message
@@ -130,30 +130,37 @@ string GetString(string message)
 }
 void AddNewTrophy()
 {
-	//string trophyName = GetString("Please enter the trophy's name: ");
-	//int trophyLevel = GetShiftValue("Please enter the trophy's level: ");
-	//Color trophyColor;
-	//string tempColor = "";
-	//do 
-	//{
-	//	string tempColor = GetString("Please enter the trophy's color (case sensitive): ");
-	//} 
-	//while (!CheckSuitableString(tempColor));
-	//if (tempColor == "GOLD") 
-	//{
-	//	trophyColor = GOLD;
-	//}
-	//else if (tempColor == "BRONZE")
-	//{
-	//	trophyColor = BRONZE;
-	//}
-	//else if (tempColor == "SILVER")
-	//{
-	//	trophyColor = SILVER;
-	//}
-	//
-	//Trophy* newTrophy = new Trophy(trophyName, trophyLevel, trophyColor);
-
+	string trophyName = GetString("Please enter the trophy's name: ");
+	int trophyLevel = GetShiftValue("Please enter the trophy's level: ");
+	Color trophyColor;
+	string tempColor = "";
+	do 
+	{
+		string tempColor = GetString("Please enter the trophy's color  BRONZE, SILVER, or GOLD (case sensitive): ");
+		if (tempColor == "GOLD")
+		{
+			trophyColor = GOLD;
+			tempColor = "";
+		}
+		else if (tempColor == "BRONZE")
+		{
+			trophyColor = BRONZE;
+			tempColor = "";
+		}
+		else if (tempColor == "SILVER")
+		{
+			trophyColor = SILVER;
+			tempColor = "";
+		}
+		else {}
+	} 
+	while (tempColor != "");
+	
+	
+	Trophy newTrophy = Trophy(trophyName, trophyLevel, trophyColor); // instantiate new trophy
+	Trophies[numberOfTrophies] = newTrophy; // add new trophy to array
+	numberOfTrophies++; // increment number of trophies that user has created
+	cout << "New trophy added" << endl;
 }
 void CopyTrophy()
 {
@@ -177,19 +184,14 @@ void ChangeColorTrophy()
 }
 void PrintTrophies()
 {
+	cout << "All existing trophies." << endl << endl;
+	for (int i = 0; i < numberOfTrophies; i++)
+	{
+		Trophies[i].Print();
+	}
 	
 }
-bool CheckSuitableString(string tempString)
-{
-	if (tempString != "GOLD" && tempString != "SILVER" && tempString != "BRONZE")
-	{
-		return false;
-	}
-	else 
-	{
-		return true;
-	}
-}
+
 
 
 
