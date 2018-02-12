@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "Trophy.h"
 
 using namespace std;
 
@@ -10,7 +11,6 @@ void DisplayGoodbyeMessage();
 void ExitApplication();
 string GetString(string);
 int GetShiftValue(string);
-int GetSize(string);
 void AddNewTrophy();
 void CopyTrophy();
 void DeleteTrophy();
@@ -19,10 +19,13 @@ void ChangeLevelTrophy();
 void ChangeColorTrophy();
 void PrintTrophies();
 void PrintMenu();
+ 
+Trophy Trophies[];
 
 // Entry point for the application
 int main()
 {
+	
 	int inputFromUser; // Initialize variable to hold user input
 	DisplayWelcomeMessage(); // Show the welcome message
 
@@ -128,6 +131,29 @@ string GetString(string message)
 }
 void AddNewTrophy()
 {
+	string trophyName = GetString("Please enter the trophy's name: ");
+	int trophyLevel = GetShiftValue("Please enter the trophy's level: ");
+	Color trophyColor;
+	string tempColor = "";
+	do 
+	{
+		string tempColor = GetString("Please enter the trophy's color (case sensitive): ");
+	} 
+	while (!CheckSuitableString(tempColor));
+	if (tempColor == "GOLD") 
+	{
+		trophyColor = GOLD;
+	}
+	else if (tempColor == "BRONZE")
+	{
+		trophyColor = BRONZE;
+	}
+	else if (tempColor == "SILVER")
+	{
+		trophyColor = SILVER;
+	}
+	
+	Trophy* newTrophy = new Trophy(trophyName, trophyLevel, trophyColor);
 
 }
 void CopyTrophy()
@@ -152,7 +178,18 @@ void ChangeColorTrophy()
 }
 void PrintTrophies()
 {
-
+	
+}
+bool CheckSuitableString(string tempString)
+{
+	if (tempString != "GOLD" && tempString != "SILVER" && tempString != "BRONZE")
+	{
+		return false;
+	}
+	else 
+	{
+		return true;
+	}
 }
 
 
