@@ -12,14 +12,16 @@ class Trophy
 {
 public:
 	Trophy();
-	Trophy(string name, int level, Color color);
+	Trophy(string& name, int level, Color& color);
 	string GetName();
+	string ColorToString(Color& color);
 	int GetLevel();
 	Color GetColor();
-	void SetColor(Color& color);
+	void SetColor(Color color);
 	void SetName(string& name);
 	void SetLevel(int level);
 	void Print();
+	
 
 private:
 

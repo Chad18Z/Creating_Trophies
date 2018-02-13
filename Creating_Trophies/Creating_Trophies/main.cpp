@@ -17,8 +17,9 @@ void ChangeLevelTrophy();
 void ChangeColorTrophy();
 void PrintTrophies();
 void PrintMenu();
+int FindIndexOfTrophy(string);
  
-Trophy Trophies[10]; // array to hold trophies
+Trophy* Trophies[10]; // array to hold trophies
 int numberOfTrophies; // number of trophies created by the user
 
 // Entry point for the application
@@ -125,7 +126,7 @@ string GetString(string message)
 	cout << endl << message << endl; // Display prompt to the user
 	cin.clear(); // clear cin buffer
 	cin.ignore();// clear cin buffer
-	getline(cin, userInput); // get input from user
+	getline (cin, userInput); // get input from user
 	return userInput;
 }
 void AddNewTrophy()
@@ -152,45 +153,97 @@ void AddNewTrophy()
 			trophyColor = SILVER;
 			tempColor = "";
 		}
-		else {}
+		else { tempColor = " "; }
 	} 
 	while (tempColor != "");
 	
 	
-	Trophy newTrophy = Trophy(trophyName, trophyLevel, trophyColor); // instantiate new trophy
+	Trophy* newTrophy = new Trophy(trophyName, trophyLevel, trophyColor); // instantiate new trophy
 	Trophies[numberOfTrophies] = newTrophy; // add new trophy to array
 	numberOfTrophies++; // increment number of trophies that user has created
 	cout << "New trophy added" << endl;
 }
 void CopyTrophy()
 {
-
+	string trophyName = GetString("Please enter the trophy's name that you want to copy: ");
+	int indexOfTrophy = FindIndexOfTrophy(trophyName);
+	Trophy* newTrophy = new Trophy(*Trophies[indexOfTrophy]);
+	Trophies[numberOfTrophies] = newTrophy; // add new trophy to array
+	numberOfTrophies++; // increment number of trophies that user has created
 }
 void DeleteTrophy()
 {
-
+	string trophyName = GetString("Please enter the trophy's name that you want to delete: ");
+	int indexOfTrophy = FindIndexOfTrophy(trophyName);
+	numberOfTrophies--; // decrement counter
+	Trophies[indexOfTrophy] = Trophies[numberOfTrophies]; // assign last trophy in array to the deleted trophy's position
+	cout << endl << "Trophy deleted." << endl;
 }
 void RenameTrophy()
 {
-
+	string trophyName = GetString("Please enter the trophy's name that you want to rename: ");	
+	int indexOfTrophy = FindIndexOfTrophy(trophyName);
+	string NewName = GetString("Please enter the trophy's new name: ");
+	Trophies[indexOfTrophy]->SetName(NewName);
+	cout << endl << "Name Changed to: " << NewName << endl;
 }
 void ChangeLevelTrophy()
 {
-
+	string trophyName = GetString("Please enter the trophy's name that you want to relevel: ");
+	int indexOfTrophy = FindIndexOfTrophy(trophyName);
+	int trophyLevel = GetShiftValue("Please enter the trophy's level: ");
+	Trophies[indexOfTrophy]->SetLevel(trophyLevel);
+	cout << endl << "Trophy's level changed" << endl;
 }
 void ChangeColorTrophy()
 {
-
+	string trophyName = GetString("Please enter the trophy's name which you want to change the color: ");
+	int indexOfTrophy = FindIndexOfTrophy(trophyName);
+	Color trophyColor = GOLD;
+	string tempColor = "";
+	do
+	{
+		string tempColor = GetString("Please enter the trophy's color  BRONZE, SILVER, or GOLD (case sensitive): ");
+		if (tempColor == "GOLD")
+		{
+			Trophies[indexOfTrophy]->SetColor(GOLD);
+			tempColor = "";
+		}
+		else if (tempColor == "BRONZE")
+		{
+			Trophies[indexOfTrophy]->SetColor(BRONZE);
+			tempColor = "";
+		}
+		else if (tempColor == "SILVER")
+		{
+			Trophies[indexOfTrophy]->SetColor(SILVER);
+			tempColor = "";
+		}
+	} while (tempColor != "");
 }
 void PrintTrophies()
 {
 	cout << "All existing trophies." << endl << endl;
 	for (int i = 0; i < numberOfTrophies; i++)
 	{
-		Trophies[i].Print();
+		Trophies[i]->Print();
 	}
 	
 }
+// this method find the index of the trophy. Assuming they all have unique names.
+int FindIndexOfTrophy(string testString)
+{
+	int index = 0;
+	for (int i = 0; i < numberOfTrophies; i++)
+	{
+		if (Trophies[i]->GetName() == testString)
+		{
+			index = i;
+		}
+	}
+	return index;
+}
+
 
 
 
