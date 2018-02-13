@@ -51,9 +51,9 @@ void Trophy::SetColor(Color color)
 // print the trophy's information to the screen
 void Trophy::Print()
 {
-	cout << "Trophy name: " << m_name << endl;
-	cout << "Trophy level: " << m_level << endl;
-	cout << "Trophy color: " << ColorToString(m_color) << endl << endl;
+	cout << "[ " << m_name << " : ";
+	cout << m_level << " : ";
+	cout << ColorToString(m_color) << " ]" << endl;
 }
 // this function converts a Color value to a string
 string Trophy::ColorToString(Color& color)
