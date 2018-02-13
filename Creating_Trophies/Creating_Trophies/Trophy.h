@@ -6,6 +6,7 @@
 
 using namespace std;
 
+// This is an enumeration of the three Trophy colors
 enum Color { BRONZE, SILVER, GOLD };
 
 class Trophy
@@ -24,10 +25,9 @@ public:
 	
 
 private:
-
-	string m_name;
-	int m_level;
-	Color m_color;
+	string m_name; // holds the trophy's name
+	int m_level; // holds the trophy's level
+	Color m_color; // holds the trophy's color
 };
 
 #endif

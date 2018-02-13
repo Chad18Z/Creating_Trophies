@@ -110,25 +110,28 @@ void ExitApplication()
 // Get an integer value from the user
 int GetShiftValue(string message)
 {
+	
 	int userInput; // Declare variable to hold input from the user
 	do
 	{
 		cout << endl << message << endl; // Display prompt to the user
 		cin >> userInput; // Get input from user
-	} while (userInput < 1 || userInput > 25); // Check to be sure the user enters valid integers
 
+	} while (userInput < 1 || userInput > 25); // Check to be sure the user enters valid integers
 	return userInput;
 }
 // Gets a string of characters from the user
 string GetString(string message)
 {
-	string userInput;
-	cout << endl << message << endl; // Display prompt to the user
-	cin.clear(); // clear cin buffer
-	cin.ignore();// clear cin buffer
-	getline (cin, userInput); // get input from user
+	char userInput[50];
+	cout << endl << message << endl; // Display prompt to the user	
+	cin.ignore();
+	cin.clear();
+	cin.get(userInput, 50); // get input from user
 	return userInput;
 }
+
+// Adds a new trophy to the array
 void AddNewTrophy()
 {
 	string trophyName = GetString("Please enter the trophy's name: ");
@@ -163,6 +166,8 @@ void AddNewTrophy()
 	numberOfTrophies++; // increment number of trophies that user has created
 	cout << "New trophy added" << endl;
 }
+
+// Copies one trophy's information to a new trophy
 void CopyTrophy()
 {
 	string trophyName = GetString("Please enter the trophy's name that you want to copy: ");
@@ -171,14 +176,19 @@ void CopyTrophy()
 	Trophies[numberOfTrophies] = newTrophy; // add new trophy to array
 	numberOfTrophies++; // increment number of trophies that user has created
 }
+
+// Remove a trohpy from the array.....also frees the memory
 void DeleteTrophy()
 {
 	string trophyName = GetString("Please enter the trophy's name that you want to delete: ");
 	int indexOfTrophy = FindIndexOfTrophy(trophyName);
 	numberOfTrophies--; // decrement counter
 	Trophies[indexOfTrophy] = Trophies[numberOfTrophies]; // assign last trophy in array to the deleted trophy's position
+	delete Trophies[numberOfTrophies + 1]; // for every new we need a delete
+	Trophies[numberOfTrophies] = NULL; // free memory
 	cout << endl << "Trophy deleted." << endl;
 }
+ // Change a trophy's name
 void RenameTrophy()
 {
 	string trophyName = GetString("Please enter the trophy's name that you want to rename: ");	
@@ -187,6 +197,7 @@ void RenameTrophy()
 	Trophies[indexOfTrophy]->SetName(NewName);
 	cout << endl << "Name Changed to: " << NewName << endl;
 }
+ // Change a trophy's level
 void ChangeLevelTrophy()
 {
 	string trophyName = GetString("Please enter the trophy's name that you want to relevel: ");
@@ -195,6 +206,7 @@ void ChangeLevelTrophy()
 	Trophies[indexOfTrophy]->SetLevel(trophyLevel);
 	cout << endl << "Trophy's level changed" << endl;
 }
+ // Change a trophy's color
 void ChangeColorTrophy()
 {
 	string trophyName = GetString("Please enter the trophy's name which you want to change the color: ");
@@ -221,6 +233,7 @@ void ChangeColorTrophy()
 		}
 	} while (tempColor != "");
 }
+// Displays all of the existing trophies to the screen
 void PrintTrophies()
 {
 	cout << "All existing trophies." << endl << endl;

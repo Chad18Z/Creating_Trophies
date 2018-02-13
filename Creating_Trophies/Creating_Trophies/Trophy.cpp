@@ -3,13 +3,14 @@
 
 using namespace std;
 
-
+// Initialize Default constructor to safe values
 Trophy::Trophy()
 {
 	m_level = 0;
 	m_name = "";
 	m_color = GOLD;
 }
+// Constructor for three parameters
 Trophy::Trophy(string& name, int level, Color& color)
 {
 	m_level = level;
@@ -17,43 +18,44 @@ Trophy::Trophy(string& name, int level, Color& color)
 	m_color = color;
 }
 
-
+// returns the name of the trophy
 string Trophy::GetName()
 {	
 	return m_name;
 }
-
+// returns the level of the trophy
 int Trophy::GetLevel()
 {
 	return m_level;
 }
-
+// returns the color of the trophy
 Color Trophy::GetColor()
 {
 	return m_color;
 }
-
+// property to change name of the trophy
 void Trophy::SetName(string& name)
 {
 	m_name = name;
 }
-
+// property to change the level of the trophy
 void Trophy::SetLevel(int level)
 {
 	m_level = level;
 }
-
+// property to change the color of the trophy
 void Trophy::SetColor(Color color)
 {
 	m_color = color;
 }
-
+// print the trophy's information to the screen
 void Trophy::Print()
 {
 	cout << "Trophy name: " << m_name << endl;
 	cout << "Trophy level: " << m_level << endl;
 	cout << "Trophy color: " << ColorToString(m_color) << endl << endl;
 }
+// this function converts a Color value to a string
 string Trophy::ColorToString(Color& color)
 {
 	switch (color)
